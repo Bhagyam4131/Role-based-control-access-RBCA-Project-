@@ -1,518 +1,289 @@
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
-
   const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (!user) {
-
     navigate("/login");
-
     return null;
-
   }
-
 
   let cards = [];
 
-
   // ADMIN
-
   if (user.role === "Admin") {
-
     cards = [
-
       {
-
         title: "👨‍🎓 Manage Students",
-
         path: "/students",
-
-        color: "#3b82f6"
-
       },
-
       {
-
         title: "👨‍🏫 Manage Instructors",
-
         path: "/instructors",
-
-        color: "#8b5cf6"
-
       },
-
       {
-
         title: "📚 Courses",
-
         path: "/courses",
-
-        color: "#06b6d4"
-
       },
-
       {
-
         title: "👤 Profile",
-
         path: "/profile",
-
-        color: "#f59e0b"
-
       },
-
       {
-
         title: "📈 Progress",
-
         path: "/progress",
-
-        color: "#22c55e"
-
       },
-
       {
-
         title: "⚙️ Settings",
-
         path: "/settings",
-
-        color: "#ef4444"
-
-      }
-
+      },
     ];
-
   }
-
-
 
   // INSTRUCTOR
-
   else if (user.role === "Instructor") {
-
     cards = [
-
       {
-
         title: "📚 My Courses",
-
         path: "/courses",
-
-        color: "#8b5cf6"
-
       },
-
       {
-
         title: "👨‍🎓 Students",
-
         path: "/students",
-
-        color: "#10b981"
-
       },
-
       {
-
         title: "⚙️ Settings",
-
         path: "/settings",
-
-        color: "#ef4444"
-
-      }
-
+      },
     ];
-
   }
-
-
 
   // STUDENT
-
   else {
-
     cards = [
-
       {
-
         title: "👤 Profile",
-
         path: "/profile",
-
-        color: "#3b82f6"
-
       },
-
       {
-
         title: "📚 Courses",
-
         path: "/courses",
-
-        color: "#8b5cf6"
-
       },
-
       {
-
         title: "📈 Progress",
-
         path: "/progress",
-
-        color: "#22c55e"
-
-      }
-
+      },
     ];
-
   }
 
-
-
   const logout = () => {
-
     localStorage.removeItem("user");
-
     navigate("/login");
-
   };
 
-
-
   return (
-
     <div
-
       style={{
-
         minHeight: "100vh",
-
         padding: "40px",
-
         background:
-
-          "linear-gradient(135deg,#0f172a,#1e293b,#334155)",
-
-        color: "white"
-
+          "linear-gradient(135deg,#667eea,#764ba2,#6dd5ed)",
+        color: "white",
       }}
-
     >
-
-
-
-      {/* Header */}
-
-
-
-      <div
-
+      {/* Welcome */}
+      <h2
         style={{
-
           textAlign: "center",
-
-          marginBottom: "50px"
-
+          marginBottom: "25px",
+          fontSize: "32px",
         }}
-
       >
+        Welcome Back 👋
+      </h2>
+
+      {/* Header Card */}
+      <div
+        style={{
+          background: "rgba(255,255,255,0.15)",
+          backdropFilter: "blur(15px)",
+          borderRadius: "25px",
+          padding: "35px",
+          marginBottom: "50px",
+          textAlign: "center",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+        }}
+      >
+        <div
+          style={{
+            width: "90px",
+            height: "90px",
+            borderRadius: "50%",
+            background:
+              "linear-gradient(135deg,#ff6b6b,#feca57)",
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "40px",
+            color: "white",
+          }}
+        >
+          👤
+        </div>
 
         <h1
-
           style={{
-
-            fontSize: "50px",
-
-            marginBottom: "10px"
-
+            marginTop: "20px",
+            marginBottom: "10px",
+            fontSize: "45px",
           }}
-
         >
-
           RBAC Dashboard
-
         </h1>
 
-
-
-        <h2>
-
-          Welcome, {user.name}
-
-        </h2>
-
-
+        <h2>{user.name}</h2>
 
         <p
-
           style={{
-
-            color: "#cbd5e1"
-
+            color: "#e2e8f0",
           }}
-
         >
-
           {user.email}
-
         </p>
 
-
-
-        <h3>
-
-          Role :
-
+        <div
+          style={{
+            marginTop: "15px",
+          }}
+        >
           <span
-
             style={{
-
-              color: "#22c55e",
-
-              marginLeft: "10px"
-
+              background: "#22c55e",
+              padding: "10px 20px",
+              borderRadius: "30px",
+              fontWeight: "bold",
             }}
-
           >
-
             {user.role}
-
           </span>
-
-        </h3>
-
-
+        </div>
 
         <button
-
           onClick={logout}
-
           style={{
-
-            background: "#ef4444",
-
-            color: "white",
-
+            marginTop: "25px",
+            padding: "12px 30px",
             border: "none",
-
-            padding: "12px 25px",
-
-            borderRadius: "10px",
-
+            borderRadius: "12px",
+            background:
+              "linear-gradient(90deg,#ef4444,#f97316)",
+            color: "white",
             cursor: "pointer",
-
-            marginTop: "15px",
-
-            fontWeight: "bold"
-
+            fontWeight: "bold",
+            fontSize: "15px",
           }}
-
         >
-
           Logout
-
         </button>
-
       </div>
 
-
-
-
-
-      {/* Cards */}
-
-
-
+      {/* Menu Cards */}
       <div
-
         style={{
-
           display: "grid",
-
           gridTemplateColumns:
-
             "repeat(auto-fit,minmax(250px,1fr))",
-
-          gap: "30px"
-
-        }}
-
-      >
-
-        {
-
-          cards.map((card, index) => (
-
-            <Link
-
-              key={index}
-
-              to={card.path}
-
-              style={{
-
-                textDecoration: "none"
-
-              }}
-
-            >
-
-              <div
-
-                style={{
-
-                  background: card.color,
-
-                  padding: "35px",
-
-                  borderRadius: "22px",
-
-                  color: "white",
-
-                  boxShadow:
-
-                    "0 10px 30px rgba(0,0,0,0.3)",
-
-                  cursor: "pointer"
-
-                }}
-
-              >
-
-                <h2>
-
-                  {card.title}
-
-                </h2>
-
-
-
-                <p
-
-                  style={{
-
-                    marginTop: "15px",
-
-                    opacity: "0.9"
-
-                  }}
-
-                >
-
-                  Click to Open
-
-                </p>
-
-              </div>
-
-            </Link>
-
-          ))
-
-        }
-
-      </div>
-
-
-
-
-
-      {/* Stats */}
-
-
-
-      <div
-
-        style={{
-
-          display: "flex",
-
-          justifyContent: "center",
-
           gap: "25px",
-
-          flexWrap: "wrap",
-
-          marginTop: "60px"
-
         }}
-
       >
+        {cards.map((card, index) => (
+          <Link
+            key={index}
+            to={card.path}
+            style={{
+              textDecoration: "none",
+            }}
+          >
+            <div
+              style={{
+                background:
+                  "rgba(255,255,255,0.18)",
+                backdropFilter: "blur(15px)",
+                borderRadius: "25px",
+                padding: "30px",
+                color: "white",
+                border:
+                  "1px solid rgba(255,255,255,0.2)",
+                boxShadow:
+                  "0 10px 25px rgba(0,0,0,0.15)",
+                transition: "0.3s",
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "700",
+                }}
+              >
+                {card.title}
+              </h2>
 
-
-
-        <div style={statCard}>
-
-          <h1>15</h1>
-
-          <p>Total Courses</p>
-
-        </div>
-
-
-
-        <div style={statCard}>
-
-          <h1>25</h1>
-
-          <p>Total Students</p>
-
-        </div>
-
-
-
-        <div style={statCard}>
-
-          <h1>3</h1>
-
-          <p>User Roles</p>
-
-        </div>
-
-
-
-        <div style={statCard}>
-
-          <h1>98%</h1>
-
-          <p>Performance</p>
-
-        </div>
-
+              <p
+                style={{
+                  marginTop: "15px",
+                  opacity: "0.8",
+                }}
+              >
+                Open Module →
+              </p>
+            </div>
+          </Link>
+        ))}
       </div>
 
+      {/* Statistics */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit,minmax(220px,1fr))",
+          gap: "25px",
+          marginTop: "60px",
+        }}
+      >
+        <div style={statCard}>
+          <h1>15</h1>
+          <p>📚 Courses</p>
+        </div>
 
+        <div style={statCard}>
+          <h1>25</h1>
+          <p>👨‍🎓 Students</p>
+        </div>
 
+        <div style={statCard}>
+          <h1>3</h1>
+          <p>👥 User Roles</p>
+        </div>
+
+        <div style={statCard}>
+          <h1>98%</h1>
+          <p>🚀 Performance</p>
+        </div>
+      </div>
     </div>
-
   );
-
 }
 
-
-
 const statCard = {
-
-  background: "#1e293b",
-
-  width: "200px",
-
+  background: "rgba(255,255,255,0.15)",
+  backdropFilter: "blur(12px)",
   padding: "25px",
-
-  borderRadius: "18px",
-
+  borderRadius: "22px",
   textAlign: "center",
-
   color: "white",
-
-  boxShadow:
-
-    "0 5px 20px rgba(0,0,0,0.3)"
-
+  boxShadow: "0 10px 25px rgba(0,0,0,0.15)",
 };
-
