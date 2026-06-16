@@ -1,0 +1,69 @@
+.dashboard-container {
+  min-height: 100vh;
+  padding: 30px;
+  background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+  color: white;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.role {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 15px;
+  background: #22c55e;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.stat {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  width: 180px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* TITLE */
+.title {
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* TABLE */
+.table {
+  margin-top: 15px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  background: #0f172a;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+}
+
+/* BUTTON */
+button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
